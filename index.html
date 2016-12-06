@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <title>Vending Machine Demo</title>
 
         <link rel  = "stylesheet" 
@@ -9,13 +8,47 @@
 
         <link rel  = "stylesheet" 
               href = "site.css">
-
     </head>
 
     <body>
 
         <div class="container">
             <h1>My Typescript Vending Machine</h1>
+
+            <div class="col-md-8 machine" data-bind="foreach: cells">            
+                <div class="col-md-4 cell"> <!-- 3x3 Grid -->
+                    <div class="col-md-6 image">
+                        <img data-bind = "attr: { src: product.category.getImageUrl(), alt: product.category.name }"/>
+                    </div>
+
+                    <div class="col-md-6 productInfo">
+                        <div data-bind = "text: product.name"></div>
+                        <h4 data-bind  = "text: stock"></h3>
+                        <h3 data-bind  = "text: '$ ' + product.price"></h3>
+                    </div>    
+                </div>
+            </div> 
+
+         <!-- Coins + Pay Button -->
+            <div class="col-md-4">
+                <h4>Paid: $ <span id = "total" data-bind = "text: paid" /></h4>
+
+                <div data-bind="foreach: validCoins">
+                    <img data-bind="attr: { src: getImageUrl(), alt: value }, click: $parent.acceptCoin"/>
+                </div>    
+
+                <h3 data-bind="with: selectedCell">               
+                    <div data-bind="text: product.name"></div>
+                        <div> 
+                            $ <span data-bind="text: product.price"></span> 
+                        </div>    
+                    </div>          
+                </h3>
+
+                <button class="btn btn-primary payButton" 
+                        data-bind="enable: canPay, click: pay"> Pay
+                </button>           
+            </div>
         </div>    
 
         <script src="js/lib/knockout-3.4.0.js"></script>
