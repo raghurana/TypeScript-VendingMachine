@@ -58,6 +58,25 @@ var VendingMachine = (function () {
         this.canPay = ko.pureComputed(function () { return _this.paid() - _this.selectedCell().product.price >= 0; });
         this.cells = ko.observableArray([]);
         this.validCoins = [new Quarter()];
+        this.cellClicked = function (clickedCell) {
+            clickedCell.isSold(false);
+            _this.selectedCell(clickedCell);
+        };
+        this.coinInserted = function (insertedCoin) {
+            var existingMoney = _this.paid();
+            _this.paid(existingMoney + insertedCoin.Value);
+        };
+        this.pay = function () {
+            if (_this.selectedCell().stock() === 0) {
+                alert("I'm sorry, we're out of them!");
+                return;
+            }
+            var existingMoney = _this.paid();
+            var currentStock = _this.selectedCell().stock();
+            _this.paid(Math.round(((existingMoney - _this.selectedCell().product.price) * 100)) / 100);
+            _this.selectedCell().stock(currentStock - 1);
+            _this.selectedCell().isSold(true);
+        };
     }
     Object.defineProperty(VendingMachine.prototype, "size", {
         set: function (machineSize) {

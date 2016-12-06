@@ -16,7 +16,8 @@
             <h1>My Typescript Vending Machine</h1>
 
             <div class="col-md-8 machine" data-bind="foreach: cells">            
-                <div class="col-md-4 cell"> <!-- 3x3 Grid -->
+                <!-- 3x3 Grid -->
+                <div class="col-md-4 cell" data-bind="click: $parent.cellClicked, css: { selected: $parent.selectedCell().product === product, sold: isSold }"> 
                     <div class="col-md-6 image">
                         <img data-bind = "attr: { src: product.category.getImageUrl(), alt: product.category.name }"/>
                     </div>
@@ -34,7 +35,7 @@
                 <h4>Paid: $ <span id = "total" data-bind = "text: paid" /></h4>
 
                 <div data-bind="foreach: validCoins">
-                    <img data-bind="attr: { src: getImageUrl(), alt: value }, click: $parent.acceptCoin"/>
+                    <img data-bind="attr: { src: getImageUrl(), alt: Value }, click: $parent.coinInserted"/>
                 </div>    
 
                 <h3 data-bind="with: selectedCell">               
@@ -44,10 +45,10 @@
                         </div>    
                     </div>          
                 </h3>
-
+                
                 <button class="btn btn-primary payButton" 
-                        data-bind="enable: canPay, click: pay"> Pay
-                </button>           
+                        data-bind="enable: canPay, click: pay"> Pay 
+                </button>
             </div>
         </div>    
 

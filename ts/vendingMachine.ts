@@ -27,6 +27,31 @@ class VendingMachine {
              this.cells.push(new Cell(product));   
         }
     }
+
+    cellClicked = (clickedCell: Cell): void => {
+        clickedCell.isSold(false);
+        this.selectedCell(clickedCell);
+    }
+
+    coinInserted = (insertedCoin: Quarter): void => {
+        let existingMoney = this.paid();
+        this.paid( existingMoney + insertedCoin.Value );
+    }
+
+    pay = ():void => {
+          if (this.selectedCell().stock() === 0) {
+            alert("I'm sorry, we're out of them!")
+            return;
+        }
+        
+        let existingMoney = this.paid();
+        let currentStock  = this.selectedCell().stock();
+
+        this.paid(Math.round(((existingMoney - this.selectedCell().product.price) * 100))/100);
+
+        this.selectedCell().stock(currentStock-1);
+        this.selectedCell().isSold(true);
+    }
 }
 
 class Cell {
