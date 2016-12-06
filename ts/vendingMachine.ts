@@ -3,6 +3,7 @@
 /// <reference path="product.ts" />
 /// <reference path="productFactory.ts" />
 
+
 enum VendingMachineSize {
     small  = 6,
     medium = 9, 
