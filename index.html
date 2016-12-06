@@ -35,7 +35,7 @@
                 <h4>Paid: $ <span id = "total" data-bind = "text: paid" /></h4>
 
                 <div data-bind="foreach: validCoins">
-                    <img data-bind="attr: { src: getImageUrl(), alt: Value }, click: $parent.coinInserted"/>
+                    <img data-bind="attr: { src: getImageUrl(), alt: value }, click: $parent.coinInserted"/>
                 </div>    
 
                 <h3 data-bind="with: selectedCell">               
