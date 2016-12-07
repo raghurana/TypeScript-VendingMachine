@@ -53,16 +53,74 @@ var Dollar = (function (_super) {
     };
     return Dollar;
 }(Coin));
-var SodaCategory = (function () {
-    function SodaCategory() {
-        this.name = "Soda";
+var ProductCategory = (function () {
+    function ProductCategory(name) {
+        var _this = this;
+        this.name = name;
+        this.getCategoryImage = function () {
+            return "img/" + _this.getCategoryImageName();
+        };
     }
-    SodaCategory.prototype.getImageUrl = function () {
-        return "img/SodaCan.png";
+    return ProductCategory;
+}());
+var SodaCategory = (function (_super) {
+    __extends(SodaCategory, _super);
+    function SodaCategory() {
+        _super.call(this, "Soda");
+    }
+    SodaCategory.prototype.getCategoryImageName = function () {
+        return "SodaCan.png";
     };
     return SodaCategory;
-}());
+}(ProductCategory));
+var NutsCategory = (function (_super) {
+    __extends(NutsCategory, _super);
+    function NutsCategory() {
+        _super.call(this, "Nuts");
+    }
+    NutsCategory.prototype.getCategoryImageName = function () {
+        return "Nuts.png";
+    };
+    return NutsCategory;
+}(ProductCategory));
+var ChipsCategory = (function (_super) {
+    __extends(ChipsCategory, _super);
+    function ChipsCategory() {
+        _super.call(this, "Chips");
+    }
+    ChipsCategory.prototype.getCategoryImageName = function () {
+        return "Chips.png";
+    };
+    return ChipsCategory;
+}(ProductCategory));
+var CandyCategory = (function (_super) {
+    __extends(CandyCategory, _super);
+    function CandyCategory() {
+        _super.call(this, "Candy");
+    }
+    CandyCategory.prototype.getCategoryImageName = function () {
+        return "Candy.png";
+    };
+    return CandyCategory;
+}(ProductCategory));
+var CandyBarCategory = (function (_super) {
+    __extends(CandyBarCategory, _super);
+    function CandyBarCategory() {
+        _super.call(this, "CandyBar");
+    }
+    CandyBarCategory.prototype.getCategoryImageName = function () {
+        return "CandyBar.png";
+    };
+    return CandyBarCategory;
+}(ProductCategory));
 /// <reference path="productCategory.ts" />
+var Initial = (function () {
+    function Initial() {
+        this.name = "Please select a product";
+        this.price = 0.0;
+    }
+    return Initial;
+}());
 var CocaCola = (function () {
     function CocaCola() {
         this.name = "Coca Cola";
@@ -71,12 +129,105 @@ var CocaCola = (function () {
     }
     return CocaCola;
 }());
+var Fanta = (function () {
+    function Fanta() {
+        this.name = "Fanta";
+        this.price = 2;
+        this.category = new SodaCategory();
+    }
+    return Fanta;
+}());
+var Sprite = (function () {
+    function Sprite() {
+        this.name = "Sprite";
+        this.price = 1.80;
+        this.category = new SodaCategory();
+    }
+    return Sprite;
+}());
+var Peanuts = (function () {
+    function Peanuts() {
+        this.name = "Peanuts";
+        this.price = 1.50;
+        this.category = new NutsCategory();
+    }
+    return Peanuts;
+}());
+var Cashews = (function () {
+    function Cashews() {
+        this.name = "Cashews";
+        this.price = 2.80;
+        this.category = new NutsCategory();
+    }
+    return Cashews;
+}());
+var Plain = (function () {
+    function Plain() {
+        this.name = "Plain";
+        this.price = 2;
+        this.category = new ChipsCategory();
+    }
+    return Plain;
+}());
+var Cheddar = (function () {
+    function Cheddar() {
+        this.name = "Cheddar";
+        this.price = 2;
+        this.category = new ChipsCategory();
+    }
+    return Cheddar;
+}());
+var Mints = (function () {
+    function Mints() {
+        this.name = "Mints";
+        this.price = 1.30;
+        this.category = new CandyCategory();
+    }
+    return Mints;
+}());
+var Gummies = (function () {
+    function Gummies() {
+        this.name = "Gummies";
+        this.price = 1.90;
+        this.category = new CandyCategory();
+    }
+    return Gummies;
+}());
+var Hersey = (function () {
+    function Hersey() {
+        this.name = "Hersey's";
+        this.price = 1.30;
+        this.category = new CandyBarCategory();
+    }
+    return Hersey;
+}());
+var MilkyWay = (function () {
+    function MilkyWay() {
+        this.name = "Milky Way";
+        this.price = 1.80;
+        this.category = new CandyBarCategory();
+    }
+    return MilkyWay;
+}());
 /// <reference path="product.ts" />
 var ProductFactory = (function () {
     function ProductFactory() {
     }
     ProductFactory.getProduct = function () {
-        return new CocaCola();
+        var random = Math.floor(Math.random() * 11);
+        switch (random) {
+            case 0: return new CocaCola();
+            case 1: return new Fanta();
+            case 2: return new Sprite();
+            case 3: return new Peanuts();
+            case 4: return new Cashews();
+            case 5: return new Plain();
+            case 6: return new Cheddar();
+            case 7: return new Mints();
+            case 8: return new Gummies();
+            case 9: return new Hersey();
+            case 10: return new MilkyWay();
+        }
     };
     return ProductFactory;
 }());
@@ -93,7 +244,7 @@ var VendingMachine = (function () {
     function VendingMachine() {
         var _this = this;
         this.paid = ko.observable(0);
-        this.selectedCell = ko.observable(new Cell(new CocaCola()));
+        this.selectedCell = ko.observable(new Cell(new Initial()));
         this.canPay = ko.pureComputed(function () { return _this.paid() - _this.selectedCell().product.price >= 0; });
         this.cells = ko.observableArray([]);
         this.validCoins = [new Dime(), new Quarter(), new Half(), new Dollar()];
