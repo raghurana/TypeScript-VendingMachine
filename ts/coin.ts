@@ -1,6 +1,6 @@
 
 
-abstract class Coin {
+export abstract class Coin {
     constructor(public value: number) {}
 
     getImageUrl = () => { 
@@ -10,7 +10,7 @@ abstract class Coin {
     protected abstract getImageName(): string;
 }
 
-class Dime extends Coin {
+export class Dime extends Coin {
     constructor() {
         super(0.10)
     } 
@@ -20,7 +20,7 @@ class Dime extends Coin {
     }
 }
 
-class Quarter extends Coin {
+export class Quarter extends Coin {
     constructor() {
         super(0.25)
     } 
@@ -30,7 +30,7 @@ class Quarter extends Coin {
     }
 }
 
-class Half extends Coin {
+export class Half extends Coin {
     constructor() {
         super(0.50)
     } 
@@ -40,7 +40,7 @@ class Half extends Coin {
     }
 }
 
-class Dollar extends Coin {
+export class Dollar extends Coin {
     constructor() {
         super(1)
     } 

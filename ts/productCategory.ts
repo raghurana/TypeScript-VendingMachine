@@ -1,4 +1,6 @@
 
+export { ProductCategory, SodaCategory, NutsCategory, ChipsCategory as PotatoChipsCategory, CandyCategory, CandyBarCategory }
+
 abstract class ProductCategory {
     constructor(public name: string) {}
 
