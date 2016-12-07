@@ -3,3 +3,4 @@
 *.js.map
 js/*
 !js/lib
+node_modules/*

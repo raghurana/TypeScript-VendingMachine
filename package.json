@@ -1,8 +1,8 @@
 {
-  "name":        "vending-machine",
-  "version":     "1.0.0",
+  "name": "vending-machine",
+  "version": "1.0.0",
   "description": "A simple demo showing Typescript capabilities",
-  "main":        "index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "start tsc -p ts && start live-server"
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/raghurana/TypeScript-VendingMachine/issues"
   },
-  "homepage": "https://github.com/raghurana/TypeScript-VendingMachine#readme"
+  "homepage": "https://github.com/raghurana/TypeScript-VendingMachine#readme",
+  "devDependencies": {
+    "live-server": "^1.1.0",
+    "typescript": "^2.0.10"
+  }
 }
