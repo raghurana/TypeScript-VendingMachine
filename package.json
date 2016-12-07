@@ -1,0 +1,21 @@
+{
+  "name":        "vending-machine",
+  "version":     "1.0.0",
+  "description": "A simple demo showing Typescript capabilities",
+  "main":        "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raghurana/TypeScript-VendingMachine.git"
+  },
+  "keywords": [],
+  "author": "Raghu Rana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raghurana/TypeScript-VendingMachine/issues"
+  },
+  "homepage": "https://github.com/raghurana/TypeScript-VendingMachine#readme"
+}
